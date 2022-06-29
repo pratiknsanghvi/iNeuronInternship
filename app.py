@@ -71,17 +71,17 @@ def commonMethodForDataAssigning():
         df['smoker'] = df['smoker'].replace([0], 1)
 
     if (children == '0'):
-        df['children_0'] = df['children_0'].replace([0], 1)
+        df['children'] = df['children'].replace([0], 1)
     elif (children == '1'):
-        df['children_1'] = df['children_1'].replace([0], 1)
+        df['children'] = df['children'].replace([0], 1)
     elif (children == '2'):
-        df['children_2'] = df['children_2'].replace([0], 1)
+        df['children'] = df['children'].replace([0], 1)
     elif (children == '3'):
-        df['children_3'] = df['children_3'].replace([0], 1)
+        df['children'] = df['children'].replace([0], 1)
     elif (children == '4'):
-        df['children_4'] = df['children_4'].replace([0], 1)
+        df['children'] = df['children'].replace([0], 1)
     elif (children == '5'):
-        df['children_5'] = df['children_5'].replace([0], 1)
+        df['children'] = df['children'].replace([0], 1)
 
     if (region.replace(" ", "").lower() == "southeast"):
         df['region'] = df['region'].replace([0], 1)
