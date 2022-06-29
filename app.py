@@ -6,12 +6,9 @@ Created on Fri Jun 10 23:51:50 2022
 import numpy as np
 import pickle
 import pandas as pd
-import flasgger
-from flasgger import Swagger
 from flask import Flask, request, jsonify, render_template,redirect,url_for
 
 app = Flask(__name__)
-Swagger(app)
 pickle_in = open("RandomForest.pkl", "rb")
 rf_regressor = pickle.load(pickle_in)
 
