@@ -32,15 +32,15 @@ def selectMLAlgo():
     selectedVal = request.form.get("option",True)
 
     if request.method =='POST':
-        if selectedValue == "rdf":
+        if selectedVal == "rdf":
             return render_template("rdf.html")
-        elif selectedValue == 'knn':
+        elif selectedVal == 'knn':
             return render_template("knn.html")
-        elif selectedValue == 'lasso':
+        elif selectedVal == 'lasso':
             return render_template("lasso.html")
-        elif selectedValue == 'lassoCV':
+        elif selectedVal == 'lassoCV':
             return render_template("lassoCV.html")
-        elif selectedValue == 'linear':
+        elif selectedVal == 'linear':
             return render_template("linear.html")
         #return redirect (url_for('click',selectedValue=selectedVal))
 
