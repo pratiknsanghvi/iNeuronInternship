@@ -7,6 +7,7 @@ import numpy as np
 import pickle
 import pandas as pd
 from flask import Flask, request, jsonify, render_template,redirect,url_for
+from collections.abc import Mapping, MutableMapping
 
 app = Flask(__name__)
 pickle_in = open("RandomForest.pkl", "rb")
