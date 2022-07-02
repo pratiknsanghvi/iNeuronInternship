@@ -29,24 +29,26 @@ linear_regressor = pickle.load(pickle_in_linear)
 def selectMLAlgo():
     #selected = request.args.get([)'option']
     selectedVal = request.form.get("option",True)
+
     if request.method =='POST':
-        return redirect (url_for('click',selectedValue=selectedVal))
+        if selectedValue == "rdf":
+            return render_template("rdf.html")
+        elif selectedValue == 'knn':
+            return render_template("knn.html")
+        elif selectedValue == 'lasso':
+            return render_template("lasso.html")
+        elif selectedValue == 'lassoCV':
+            return render_template("lassoCV.html")
+        elif selectedValue == 'linear':
+            return render_template("linear.html")
+        #return redirect (url_for('click',selectedValue=selectedVal))
 
     return render_template('MLType.html')
 
 
-@app.route('/<selectedValue>')
-def click(selectedValue):
-    if selectedValue == "rdf":
-        return render_template("rdf.html")
-    elif selectedValue == 'knn':
-        return render_template("knn.html")
-    elif selectedValue == 'lasso':
-        return render_template("lasso.html")
-    elif selectedValue == 'lassoCV':
-        return render_template("lassoCV.html")
-    elif selectedValue == 'linear':
-        return render_template("linear.html")
+#@app.route('/<selectedValue>')
+#def click(selectedValue):
+
 
 def commonMethodForDataAssigning():
     features = []
