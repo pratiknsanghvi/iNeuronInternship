@@ -17,11 +17,11 @@
 	
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict_post_knn')}}"method="post">
-    	<input type="number" name="Age" placeholder="Age" required="required" />
+    	<input type="number" name="Age" placeholder="Age" required />
 	<input type="number" name="BMI" placeholder="BMI" required="required" />
 
     <span class="input-group-addon">Sex</span>
-        <select name="sex_select" class="selectpicker form-control"required="required">
+        <select name="sex_select" class="selectpicker form-control" >
           {% for o in data1 %}
           <option value="{{ o.sex }}">{{ o.sex }}</option>
           {% endfor %}
@@ -30,14 +30,14 @@
 
 
      <span class="input-group-addon">Children</span>
-        <select name="children_select" class="selectpicker form-control"required="required">
+        <select name="children_select" class="selectpicker form-control">
           {% for c in data2 %}
           <option value="{{ c.child }}">{{ c.child }}</option>
           {% endfor %}
         </select>
 
    <span class="input-group-addon">Smoker</span>
-        <select name="smoker_select" class="selectpicker form-control"required="required">
+        <select name="smoker_select" class="selectpicker form-control" >
           {% for s in data3 %}
           <option value="{{ s.smoker }}">{{ s.smoker }}</option>
           {% endfor %}
@@ -45,7 +45,7 @@
 
 
           <span class="input-group-addon">Region</span>
-        <select name="region_select" class="selectpicker form-control"required="required">
+        <select name="region_select" class="selectpicker form-control" >
           {% for r in data4 %}
           <option value="{{ r.region }}">{{ r.region }}</option>
           {% endfor %}

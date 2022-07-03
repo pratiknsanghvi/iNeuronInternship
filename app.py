@@ -25,13 +25,12 @@ lassoCV_regressor = pickle.load(pickle_in_lassoCV)
 pickle_in_linear = open("LinearRegression.pkl", "rb")
 linear_regressor = pickle.load(pickle_in_linear)
 
-global_sex_data_select_html =[{'sex':'Please Select'},{'sex':'Male'}, {'sex':'Female'}]
-global_child_data_select_html =[{'child':'Please Select'},{'child':'0'}, {'child':'1'},{'child':'2'},
+global_sex_data_select_html =[{'sex':'Male'}, {'sex':'Female'}]
+global_child_data_select_html =[{'child':'0'}, {'child':'1'},{'child':'2'},
             {'child':'3'},{'child':'4'},{'child':'5'}]
 
-global_smoker_data_select_html =[{'smoker':'Please Select'},{'smoker':'Yes'}, {'smoker':'No'}]
-global_region_data_select_html =[{'region':'Please Select'},
-                {'region':'South West'},{'region':'South East'},
+global_smoker_data_select_html =[{'smoker':'Yes'}, {'smoker':'No'}]
+global_region_data_select_html =[{'region':'South West'},{'region':'South East'},
                 {'region':'North West'},{'region':'North East'}]
 
 
