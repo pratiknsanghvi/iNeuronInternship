@@ -17,8 +17,8 @@
 	
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict_post_linearRegression')}}"method="post">
-    	<input type="text" name="Age" placeholder="Age" required="required" />
-	<input type="text" name="BMI" placeholder="BMI" required="required" />
+    	<input type="number" name="Age" placeholder="Age" required="required" />
+	<input type="number" name="BMI" placeholder="BMI" required="required" />
 	<span class="input-group-addon">Sex</span>
         <select name="sex_select" class="selectpicker form-control"required="required">
           {% for o in data1 %}

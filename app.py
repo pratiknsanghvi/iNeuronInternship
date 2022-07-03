@@ -81,8 +81,8 @@ def commonMethodForDataAssigning():
     for x in request.form.values():
         features.append(x)
 
-    age = features[0]
-    bmi = features[1]
+    age = str(features[0])
+    bmi = str(features[1])
     #sex = features[2]
     #children = features[3]
     #smoker = features[4]
@@ -189,8 +189,8 @@ def predict_post_knn():
     for x in request.form.values():
         features.append(x)
 
-    age = features[0]
-    bmi = features[1]
+    age = str(features[0])
+    bmi = str(features[1])
     # sex = features[2]
     # children = features[3]
     # smoker = features[4]
