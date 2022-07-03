@@ -19,10 +19,36 @@
     <form action="{{ url_for('predict_post_linearRegression')}}"method="post">
     	<input type="text" name="Age" placeholder="Age" required="required" />
 	<input type="text" name="BMI" placeholder="BMI" required="required" />
-	<input type="text" name="Sex" placeholder="Sex" required="required" />
-	<input type="text" name="Children" placeholder="Children" required="required" />
-	<input type="text" name="Smoker" placeholder="Smoker" required="required" />
-	<input type="text" name="Region" placeholder="Region" required="required" />
+	<span class="input-group-addon">Sex</span>
+        <select name="sex_select" class="selectpicker form-control"required="required">
+          {% for o in data1 %}
+          <option value="{{ o.sex }}">{{ o.sex }}</option>
+          {% endfor %}
+        </select>
+
+
+
+     <span class="input-group-addon">Children</span>
+        <select name="children_select" class="selectpicker form-control"required="required">
+          {% for c in data2 %}
+          <option value="{{ c.child }}">{{ c.child }}</option>
+          {% endfor %}
+        </select>
+
+   <span class="input-group-addon">Smoker</span>
+        <select name="smoker_select" class="selectpicker form-control"required="required">
+          {% for s in data3 %}
+          <option value="{{ s.smoker }}">{{ s.smoker }}</option>
+          {% endfor %}
+        </select>
+
+
+          <span class="input-group-addon">Region</span>
+        <select name="region_select" class="selectpicker form-control"required="required">
+          {% for r in data4 %}
+          <option value="{{ r.region }}">{{ r.region }}</option>
+          {% endfor %}
+        </select>
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
 

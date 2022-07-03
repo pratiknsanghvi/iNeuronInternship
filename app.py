@@ -25,6 +25,16 @@ lassoCV_regressor = pickle.load(pickle_in_lassoCV)
 pickle_in_linear = open("LinearRegression.pkl", "rb")
 linear_regressor = pickle.load(pickle_in_linear)
 
+global_sex_data_select_html =[{'sex':'Please Select'},{'sex':'Male'}, {'sex':'Female'}]
+global_child_data_select_html =[{'child':'Please Select'},{'child':'0'}, {'child':'1'},{'child':'2'},
+            {'child':'3'},{'child':'4'},{'child':'5'}]
+
+global_smoker_data_select_html =[{'smoker':'Please Select'},{'smoker':'Yes'}, {'smoker':'No'}]
+global_region_data_select_html =[{'region':'Please Select'},
+                {'region':'South West'},{'region':'South East'},
+                {'region':'North West'},{'region':'North East'}]
+
+
 
 @app.route('/', methods=["GET","POST"])
 def selectMLAlgo():
@@ -33,15 +43,30 @@ def selectMLAlgo():
 
     if request.method =='POST':
         if selectedVal == "rdf":
-            return render_template("rdf.html")
+            return render_template("rdf.html",data1=global_sex_data_select_html,
+                                   data2=global_child_data_select_html,
+                                   data3=global_smoker_data_select_html,
+                                   data4=global_region_data_select_html)
         elif selectedVal == 'knn':
-            return render_template("knn.html")
+            return render_template("knn.html",data1=global_sex_data_select_html,
+                                   data2=global_child_data_select_html,
+                                   data3=global_smoker_data_select_html,
+                                   data4=global_region_data_select_html)
         elif selectedVal == 'lasso':
-            return render_template("lasso.html")
+            return render_template("lasso.html",data1=global_sex_data_select_html,
+                                   data2=global_child_data_select_html,
+                                   data3=global_smoker_data_select_html,
+                                   data4=global_region_data_select_html)
         elif selectedVal == 'lassoCV':
-            return render_template("lassoCV.html")
+            return render_template("lassoCV.html",data1=global_sex_data_select_html,
+                                   data2=global_child_data_select_html,
+                                   data3=global_smoker_data_select_html,
+                                   data4=global_region_data_select_html)
         elif selectedVal == 'linear':
-            return render_template("linear.html")
+            return render_template("linear.html",data1=global_sex_data_select_html,
+                                   data2=global_child_data_select_html,
+                                   data3=global_smoker_data_select_html,
+                                   data4=global_region_data_select_html)
         #return redirect (url_for('click',selectedValue=selectedVal))
 
     return render_template('MLType.html')
@@ -58,11 +83,17 @@ def commonMethodForDataAssigning():
 
     age = features[0]
     bmi = features[1]
-    sex = features[2]
-    children = features[3]
-    smoker = features[4]
-    region = features[5]
+    #sex = features[2]
+    #children = features[3]
+    #smoker = features[4]
+    #region = features[5]
     print(features)
+
+    sex = str(request.form.get('sex_select'))
+    children = str(request.form.get('children_select'))
+    smoker = str(request.form.get('smoker_select'))
+    region = str(request.form.get('region_select'))
+
     # ====convert to dummies data frame for the user input
     # Prepare the dataset for the model to predict
     df = pd.DataFrame({"age": age, "sex": 0, "bmi": bmi, "children": 0, "smoker": 0, "region": 0}, index=[0])
@@ -105,7 +136,7 @@ def predict_post_lassoRegression():
     prediction = lasso_regressor.predict(x)
 
     return render_template('lasso.html',
-                           prediction_text='Employee Insurance predicted to be $ {}'.format(str(prediction)))
+                           prediction_text='Employee Insurance predicted to be ${:,.2f}'.format(round(prediction[0], 2)))
 
 @app.route('/predict_lassoCVsRegression', methods=["GET","POST"])
 def predict_post_lassoCVRegression():
@@ -116,7 +147,7 @@ def predict_post_lassoCVRegression():
     prediction = lassoCV_regressor.predict(x)
 
     return render_template('lassoCV.html',
-                           prediction_text='Employee Insurance predicted to be $ {}'.format(str(prediction)))
+                           prediction_text='Employee Insurance predicted to be ${:,.2f}'.format(round(prediction[0], 2)))
 
 @app.route('/predict_linearRegression', methods=["GET","POST"])
 def predict_post_linearRegression():
@@ -127,7 +158,9 @@ def predict_post_linearRegression():
     prediction = linear_regressor.predict(x)
 
     return render_template('linear.html',
-                           prediction_text='Employee Insurance predicted to be $ {}'.format(str(prediction)))
+                           prediction_text='Employee Insurance predicted to be ${:,.2f}'.format(
+                               round(prediction[0], 2)))
+
 
 @app.route('/predict_RandomForest', methods=["GET","POST"])
 def predict_post_randomForest():
@@ -145,7 +178,8 @@ def predict_post_randomForest():
     prediction = rf_regressor.predict(x)
 
     return render_template('rdf.html',
-                           prediction_text='Employee Insurance predicted to be $ {}'.format(prediction))
+                           prediction_text='Employee Insurance predicted to be ${:,.2f}'.format(
+                               round(prediction[0], 2)))
 
 
 @app.route('/predict_knn_post', methods=["GET","POST"])
@@ -157,10 +191,16 @@ def predict_post_knn():
 
     age = features[0]
     bmi = features[1]
-    sex = features[2]
-    children = features[3]
-    smoker = features[4]
-    region = features[5]
+    # sex = features[2]
+    # children = features[3]
+    # smoker = features[4]
+    # region = features[5]
+    print(features)
+
+    sex = str(request.form.get('sex_select'))
+    children = str(request.form.get('children_select'))
+    smoker = str(request.form.get('smoker_select'))
+    region = str(request.form.get('region_select'))
     print(features)
     # ===================================================
     # ====convert to dummies data frame for the user input
@@ -208,10 +248,9 @@ def predict_post_knn():
     print(df)
 
     prediction = regressor.predict(df)
-    print(prediction)
-
+    print(''.join(str(round(prediction[0],2))))
     return render_template('knn.html',
-                           prediction_text='Employee Insurance predicted to be $ {}'.format(prediction))
+                    prediction_text='Employee Insurance predicted to be ${:,.2f}'.format(round(prediction[0],2)))
 
 
 if __name__ == '__main__':
